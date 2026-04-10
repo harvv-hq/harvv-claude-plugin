@@ -76,6 +76,14 @@ Add to `index.html` before `</head>`:
    - "View your dashboard at https://harvv.com/site.html#/app"
    - "Issues are detected automatically after 50+ sessions."
 
+5. **Subdomains**: Ask the user if their site has any subdomains:
+   - "Does your site have any subdomains (like app.yoursite.com, shop.yoursite.com)?"
+   - **If yes**, explain:
+     - If the subdomains share the same codebase (monorepo, same theme, etc.), the pixel you just installed will cover them automatically via first-party cookies on the root domain
+     - If they're separate codebases/deployments, you'll need to install the pixel on each one — I can help with that, just open the other project in Claude and run `/harvv:install` again
+     - After a few hours of traffic, Harvv will auto-detect any live subdomains without the pixel and show them in the dashboard with checkbox install prompts — go to harvv.com/site.html#/app → Overview → scroll to "Install on more subdomains"
+   - **If no**, say: "Great — you're all set. The pixel is first-party and handles everything automatically."
+
 ## What the pixel captures
 - Dead clicks (clicks on non-interactive elements)
 - Rage clicks (frustrated repeated clicking)
