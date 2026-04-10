@@ -1,0 +1,18 @@
+{
+  "name": "harvv",
+  "version": "1.0.0",
+  "description": "Harvv UX Analytics \u2014 detect dead clicks, rage clicks, and conversion killers. One pixel, AI-powered fix suggestions.",
+  "author": {
+    "name": "Harvv",
+    "url": "https://harvv.com"
+  },
+  "homepage": "https://harvv.com",
+  "repository": "https://github.com/harvv/claude-plugin",
+  "license": "MIT",
+  "userConfig": {
+    "harvv_api_key": {
+      "description": "Your Harvv API key. Get one at https://harvv.com/site.html#/app \u2192 Settings \u2192 API Keys",
+      "sensitive": true
+    }
+  }
+}
