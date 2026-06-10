@@ -1,12 +1,12 @@
 ---
 name: install
-description: Install the Harvv analytics pixel into any website or web app. Detects dead clicks, rage clicks, scroll patterns, and 15+ behavioral signals. Use when setting up analytics, adding tracking, or when a user wants to understand why their site isn't converting.
+description: Install the Harvv analytics pixel into any website or web app. Detects dead clicks, rage clicks, scroll patterns, Core Web Vitals, JS errors, and 50+ behavioral signals. Use when setting up analytics, adding tracking, or when a user wants to understand why their site isn't converting.
 allowed-tools: Read Write Edit Bash Glob Grep
 ---
 
 # Install Harvv Pixel
 
-Install the Harvv behavioral analytics pixel into this project. The pixel is 5KB gzipped, captures 18 behavioral signals, and requires zero configuration.
+Install the Harvv behavioral analytics pixel into this project. The pixel is ~21KB gzipped, loads async (never blocks paint), captures 50+ behavioral signals, and requires zero configuration.
 
 ## Instructions
 
@@ -84,14 +84,16 @@ Add to `index.html` before `</head>`:
      - After a few hours of traffic, Harvv will auto-detect any live subdomains without the pixel and show them in the dashboard with checkbox install prompts — go to harvv.com/site.html#/app → Overview → scroll to "Install on more subdomains"
    - **If no**, say: "Great — you're all set. The pixel is first-party and handles everything automatically."
 
-## What the pixel captures
+## What the pixel captures (50+ signals, 52 event types)
 - Dead clicks (clicks on non-interactive elements)
 - Rage clicks (frustrated repeated clicking)
-- Scroll depth and patterns
+- Scroll depth, skim-vs-read velocity, and patterns
 - Hover intent on CTAs
-- Form field interactions
-- Page navigation patterns
-- Network request performance
-- Time to first interaction
-- Viewport snapshots
-- Zero PII — no cookies, no personal data
+- Form field interactions and abandonment (which field they quit on)
+- Core Web Vitals (LCP / INP / CLS / FCP / TTFB) and long tasks
+- JS errors and network failures (failed or slow requests)
+- Mobile UI defects (tap-target size, edge taps, readability, overflow)
+- SEO page audit (title / meta description / H1 / canonical / schema)
+- Page navigation patterns (SPA soft-navs, back-button)
+- GA4 hit interception (mirrors the site's own gtag events)
+- Zero PII — no cookies, no input values, no personal data

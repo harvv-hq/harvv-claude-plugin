@@ -8,13 +8,22 @@ allowed-tools: Read Write Edit Bash Glob Grep
 
 Fetch a specific issue from Harvv and generate a code fix for it.
 
+## Resolving the API key
+
+Resolve the key in this order (never print the full key back to the user):
+1. `$HARVV_API_KEY` environment variable, if set
+2. The plugin config value `${user_config.harvv_api_key}`, if the harness substituted it (it will start with `hv_live_`)
+3. Otherwise ask the user: "What's your Harvv API key? Create one at https://harvv.com/site.html#/app -> Settings -> API Keys (format: hv_live_ + 32 hex chars)."
+
+In the bash examples below, `$HARVV_API_KEY` stands for whichever value you resolved.
+
 ## Instructions
 
 1. Get the issue ID from $ARGUMENTS (e.g., `/harvv:fix 123` or `/harvv:fix site_id issue_id`)
 
 2. Fetch the issue details:
 ```bash
-curl -s -H "Authorization: Bearer ${user_config.harvv_api_key}" "https://harvv.com/v1/sites/SITE_ID/issues/ISSUE_ID" | python3 -m json.tool
+curl -s -H "Authorization: Bearer $HARVV_API_KEY" "https://harvv.com/v1/sites/SITE_ID/issues/ISSUE_ID" | python3 -m json.tool
 ```
 
 3. Read the issue data:
@@ -45,5 +54,5 @@ curl -s -H "Authorization: Bearer ${user_config.harvv_api_key}" "https://harvv.c
 
 Fetch all open issues and ask which one to fix:
 ```bash
-curl -s -H "Authorization: Bearer ${user_config.harvv_api_key}" "https://harvv.com/v1/sites/SITE_ID/issues?status=open" | python3 -m json.tool
+curl -s -H "Authorization: Bearer $HARVV_API_KEY" "https://harvv.com/v1/sites/SITE_ID/issues?status=open" | python3 -m json.tool
 ```

@@ -8,6 +8,15 @@ allowed-tools: Bash
 
 Fetch detected UX issues from the Harvv API and display them.
 
+## Resolving the API key
+
+Resolve the key in this order (never print the full key back to the user):
+1. `$HARVV_API_KEY` environment variable, if set
+2. The plugin config value `${user_config.harvv_api_key}`, if the harness substituted it (it will start with `hv_live_`)
+3. Otherwise ask the user: "What's your Harvv API key? Create one at https://harvv.com/site.html#/app -> Settings -> API Keys (format: hv_live_ + 32 hex chars)."
+
+In the bash examples below, `$HARVV_API_KEY` stands for whichever value you resolved.
+
 ## Instructions
 
 1. Get the API key from user config or ask the user
@@ -16,13 +25,13 @@ Fetch detected UX issues from the Harvv API and display them.
 Run this command to fetch issues:
 
 ```bash
-curl -s -H "Authorization: Bearer ${user_config.harvv_api_key}" "https://harvv.com/v1/sites" | python3 -m json.tool
+curl -s -H "Authorization: Bearer $HARVV_API_KEY" "https://harvv.com/v1/sites" | python3 -m json.tool
 ```
 
 If the user specified a site (via $ARGUMENTS), fetch issues for that site:
 
 ```bash
-curl -s -H "Authorization: Bearer ${user_config.harvv_api_key}" "https://harvv.com/v1/sites/SITE_ID/issues" | python3 -m json.tool
+curl -s -H "Authorization: Bearer $HARVV_API_KEY" "https://harvv.com/v1/sites/SITE_ID/issues" | python3 -m json.tool
 ```
 
 3. Display the issues in a clear format:

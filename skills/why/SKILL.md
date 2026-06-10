@@ -8,19 +8,28 @@ allowed-tools: Bash
 
 Fetch comprehensive UX analytics from Harvv to identify conversion blockers.
 
+## Resolving the API key
+
+Resolve the key in this order (never print the full key back to the user):
+1. `$HARVV_API_KEY` environment variable, if set
+2. The plugin config value `${user_config.harvv_api_key}`, if the harness substituted it (it will start with `hv_live_`)
+3. Otherwise ask the user: "What's your Harvv API key? Create one at https://harvv.com/site.html#/app -> Settings -> API Keys (format: hv_live_ + 32 hex chars)."
+
+In the bash examples below, `$HARVV_API_KEY` stands for whichever value you resolved.
+
 ## Instructions
 
 1. Fetch site stats and friction data:
 
 ```bash
 # Get site list
-SITES=$(curl -s -H "Authorization: Bearer ${user_config.harvv_api_key}" "https://harvv.com/v1/sites")
+SITES=$(curl -s -H "Authorization: Bearer $HARVV_API_KEY" "https://harvv.com/v1/sites")
 echo "$SITES" | python3 -m json.tool
 
 # For each site (or the one specified in $ARGUMENTS):
-curl -s -H "Authorization: Bearer ${user_config.harvv_api_key}" "https://harvv.com/v1/sites/SITE_ID/stats?period=30d" | python3 -m json.tool
-curl -s -H "Authorization: Bearer ${user_config.harvv_api_key}" "https://harvv.com/v1/sites/SITE_ID/friction?period=30d" | python3 -m json.tool
-curl -s -H "Authorization: Bearer ${user_config.harvv_api_key}" "https://harvv.com/v1/sites/SITE_ID/issues" | python3 -m json.tool
+curl -s -H "Authorization: Bearer $HARVV_API_KEY" "https://harvv.com/v1/sites/SITE_ID/stats?period=30d" | python3 -m json.tool
+curl -s -H "Authorization: Bearer $HARVV_API_KEY" "https://harvv.com/v1/sites/SITE_ID/friction?period=30d" | python3 -m json.tool
+curl -s -H "Authorization: Bearer $HARVV_API_KEY" "https://harvv.com/v1/sites/SITE_ID/issues" | python3 -m json.tool
 ```
 
 2. Analyze the data and present a conversion diagnosis:
