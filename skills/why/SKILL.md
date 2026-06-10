@@ -12,8 +12,7 @@ Fetch comprehensive UX analytics from Harvv to identify conversion blockers.
 
 Resolve the key in this order (never print the full key back to the user):
 1. `$HARVV_API_KEY` environment variable, if set
-2. The plugin config value `${user_config.harvv_api_key}`, if the harness substituted it (it will start with `hv_live_`)
-3. Otherwise ask the user: "What's your Harvv API key? Create one at https://harvv.com/site.html#/app -> Settings -> API Keys (format: hv_live_ + 32 hex chars)."
+2. Otherwise ask the user: "What's your Harvv API key? /harvv:install creates one automatically for new accounts; existing accounts create one at https://harvv.com/site.html#/app -> Settings -> API Keys (format: hv_live_ + 32 hex chars)." Suggest they export it as HARVV_API_KEY so future commands skip this question.
 
 In the bash examples below, `$HARVV_API_KEY` stands for whichever value you resolved.
 

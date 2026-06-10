@@ -6,8 +6,11 @@ Detect dead clicks, rage clicks, and conversion killers on your website. One pix
 
 ## Install
 
+Two commands in Claude Code (the first registers the marketplace, once per machine):
+
 ```
-/plugin install github:AxiomState/harvv-claude-plugin
+/plugin marketplace add AxiomState/harvv-claude-plugin
+/plugin install harvv@harvv-claude-plugin
 ```
 
 ## Setup
