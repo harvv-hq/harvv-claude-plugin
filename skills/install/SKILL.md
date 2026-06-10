@@ -20,9 +20,21 @@ Install the Harvv behavioral analytics pixel into this project. The pixel is ~21
    - `app/layout.tsx` or `app/layout.js` → **Next.js App Router**
    - `pages/_document.tsx` or `pages/_document.js` → **Next.js Pages Router**
 
-2. **Get the pixel key**:
-   - If the user provided a key or site ID, use it
-   - Otherwise ask: "What's your Harvv pixel key? You can find it at https://harvv.com/site.html#/app → click your site → Copy Snippet"
+2. **Get the pixel key** (in this order):
+   - If the user provided a key or site ID, use it.
+   - Otherwise ask for their **email address** and auto-register:
+     ```bash
+     curl -s -X POST https://harvv.com/v1/register \
+       -H "Content-Type: application/json" \
+       -d '{"email":"THEIR_EMAIL","domain":"THEIR_DOMAIN","project_type":"DETECTED_TYPE","source":"claude_plugin"}'
+     ```
+   - **New account** (response contains `api_key` + `activation_link`):
+     1. Use `pixel_key` from the response for the install below.
+     2. Save the `api_key` for them: suggest adding `HARVV_API_KEY=<key>` to their shell profile or .env (never echo it back fully after saving — show `hv_live_xxxx...` only). This powers /harvv:issues, /harvv:fix, and /harvv:why with zero portal visits.
+     3. After installing the pixel, tell them, in this spirit:
+        "Your Harvv account is ready. **Click this link to activate it and see your dashboard:** <activation_link> — it signs you in automatically (works once, expires in 7 days). A welcome email with a password-setup link is also on its way."
+   - **Existing account** (response has `pixel_key` but no `api_key`): use the returned pixel_key; for the API key, point them to harvv.com → Settings → API Keys (we never auto-mint keys for existing accounts).
+   - If they hit the rate limit (429), wait a few minutes or ask for their existing pixel key.
 
 3. **Install based on project type**:
 

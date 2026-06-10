@@ -27,14 +27,15 @@ Claude will:
 4. Inject the pixel into the right file for your project
 5. Send you a welcome email with a magic link to set your password
 
-### Stage 2: Get an API key (for issue analysis)
+### Stage 2: API key (usually automatic)
 
-After the pixel captures some sessions (usually within a few hours), you'll want to query detected issues. For that you need an API key:
+If `/harvv:install` created your account, it already saved an API key for you and gave you a one-click activation link to your dashboard — nothing else to do.
+
+If you already had a Harvv account, create a key once:
 
 1. Go to [harvv.com/site.html#/app](https://harvv.com/site.html#/app) → Settings → API Keys
-2. Click "Create Key"
-3. Copy the `hv_live_xxx` key
-4. Tell Claude your API key when prompted (the plugin stores it securely via Claude Code's `userConfig` system)
+2. Click "Create Key" and copy the `hv_live_xxx` key
+3. Set it as `HARVV_API_KEY` in your environment (or tell Claude when prompted)
 
 ## Commands
 
