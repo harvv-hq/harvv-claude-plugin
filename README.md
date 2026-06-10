@@ -13,6 +13,17 @@ Two commands in Claude Code (the first registers the marketplace, once per machi
 /plugin install harvv@harvv-claude-plugin
 ```
 
+> **Where this works:** the `claude` terminal CLI, the VS Code / JetBrains extensions, the desktop app's **Code** tab, and claude.ai/code. If you see "/plugin isn't available in this environment", you're in a chat surface (claude.ai chat or the desktop chat tab) — switch to one of the above.
+
+**No plugin system? Use plain skills instead.** Copy the four folders from this repo's `skills/` directory into your project's `.claude/skills/` — the commands load on every Claude Code surface with no marketplace needed:
+
+```bash
+git clone https://github.com/AxiomState/harvv-claude-plugin /tmp/harvv-plugin
+mkdir -p .claude/skills && cp -R /tmp/harvv-plugin/skills/* .claude/skills/
+```
+
+(With plain skills the commands are `/install`, `/issues`, `/fix`, `/why` — no `harvv:` prefix.)
+
 ## Setup
 
 The plugin works in two stages:
