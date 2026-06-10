@@ -7,8 +7,11 @@
   "plugins": [
     {
       "name": "harvv",
-      "source": ".",
-      "description": "Harvv UX analytics — detect dead clicks, rage clicks, and conversion killers. Install the pixel, view detected issues, apply AI-generated fixes."
+      "source": "./",
+      "description": "Harvv UX analytics \u2014 detect dead clicks, rage clicks, and conversion killers. Install the pixel, view detected issues, apply AI-generated fixes."
     }
-  ]
+  ],
+  "metadata": {
+    "description": "Harvv behavioral UX analytics for Claude Code: install the pixel, view detected issues, apply AI-generated fixes."
+  }
 }
