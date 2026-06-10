@@ -32,7 +32,8 @@ Install the Harvv behavioral analytics pixel into this project. The pixel is ~21
      1. Use `pixel_key` from the response for the install below.
      2. Save the `api_key` for them: suggest adding `HARVV_API_KEY=<key>` to their shell profile or .env (never echo it back fully after saving — show `hv_live_xxxx...` only). This powers /harvv:issues, /harvv:fix, and /harvv:why with zero portal visits.
      3. After installing the pixel, tell them, in this spirit:
-        "Your Harvv account is ready. **Click this link to activate it and see your dashboard:** <activation_link> — it signs you in automatically (works once, expires in 7 days). A welcome email with a password-setup link is also on its way."
+        "Your Harvv account is ready. **Click this link to activate it and see your dashboard:** <activation_link> — it signs you in automatically (works once, expires in 7 days). No password needed: any time you're signed out, use 'Email me a sign-in link' on the login page. If you'd rather have a password, your welcome email has a one-click setup link."
+     4. NEVER ask the user to type a password in this chat, and never offer to set one for them — passwords are set in the browser via the emailed link only.
    - **Existing account** (response has `pixel_key` but no `api_key`): use the returned pixel_key; for the API key, point them to harvv.com → Settings → API Keys (we never auto-mint keys for existing accounts).
    - If they hit the rate limit (429), wait a few minutes or ask for their existing pixel key.
 
