@@ -9,7 +9,7 @@ Detect dead clicks, rage clicks, and conversion killers on your website. One pix
 Two commands in Claude Code (the first registers the marketplace, once per machine):
 
 ```
-/plugin marketplace add AxiomState/harvv-claude-plugin
+/plugin marketplace add harvv-hq/harvv-claude-plugin
 /plugin install harvv@harvv-claude-plugin
 ```
 
@@ -18,7 +18,7 @@ Two commands in Claude Code (the first registers the marketplace, once per machi
 **No plugin system? Use plain skills instead.** Copy the four folders from this repo's `skills/` directory into your project's `.claude/skills/` — the commands load on every Claude Code surface with no marketplace needed:
 
 ```bash
-git clone https://github.com/AxiomState/harvv-claude-plugin /tmp/harvv-plugin
+git clone https://github.com/harvv-hq/harvv-claude-plugin /tmp/harvv-plugin
 mkdir -p .claude/skills && cp -R /tmp/harvv-plugin/skills/* .claude/skills/
 ```
 
@@ -152,7 +152,7 @@ Deploy your changes and Harvv will verify the fix.
 - **API Docs:** https://harvv.com/docs/api
 - **Privacy:** https://harvv.com/privacy
 - **Security:** https://harvv.com/trust
-- **GitHub:** https://github.com/AxiomState/harvv-claude-plugin
+- **GitHub:** https://github.com/harvv-hq/harvv-claude-plugin
 - **Support:** hello@harvv.com
 
 ## License
