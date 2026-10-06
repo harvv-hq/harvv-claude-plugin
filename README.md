@@ -59,6 +59,7 @@ If you already had a Harvv account, create a key once:
 | `/harvv:issues` | List all detected UX issues on your site(s). Shows status, impact, and fix suggestions. | Yes |
 | `/harvv:fix 123` | Fetch issue #123, find the relevant element in your codebase, and apply an AI-generated fix. | Yes |
 | `/harvv:why` | Full conversion diagnosis. Shows exactly where users get stuck with prioritized quick wins. | Yes |
+| `/harvv:setup` | Onboarding: checks what Harvv has observed (pixel, Shopify checkout pixel, GA4, Search Console, Slack), collects what only you know, and turns "send me this every Monday" into a scheduled task. Needs the Harvv MCP connector, not the API key. Also runs in claude.ai as `harvv-setup.skill` from harvv.com/docs/claude-skill. | No (MCP) |
 
 ## What Harvv detects
 
