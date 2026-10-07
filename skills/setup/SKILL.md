@@ -11,7 +11,7 @@ You are walking a person through getting Harvv to the point where it answers wel
 
 Harvv is reached through its MCP connector. Look for tools named `get_setup_status`, `list_my_sites`, `install_pixel`. If they are present, carry on.
 
-If they are not present, nothing below works, so stop and get it connected first:
+If none of them are present, nothing below works, so stop and get it connected first. If `list_my_sites` is there but `get_setup_status` is not, the connector is an older Harvv: do pass 1 by hand (`list_my_sites`, `check_install` on each live URL, and ask the person about the rest), and say that the checklist will be fuller once Harvv updates.
 
 - **claude.ai or the Claude desktop app:** Settings > Connectors > Add custom connector, URL `https://harvv.com/mcp`. The token comes from the Harvv dashboard: Settings > Integrations > AI assistant card > Create token (shown once). Harvv's own help for this is the `mcp-connect` entry; once connected, `get_help` returns it word for word.
 - **Claude Code:** `claude mcp add --transport http harvv https://harvv.com/mcp`, then sign in when prompted.
@@ -58,8 +58,10 @@ The person wants Harvv to come to them. Find out three things: which report, for
 Rules that keep these reports worth reading:
 
 - **Pick a cadence the data supports.** Friction and speed need a week; search and keywords need a month; a setup watch can be daily until the pixel is live, then stop. `get_setup_status` tells you which tools will have data, so do not schedule a search report for a site with no Search Console.
-- **The prompt must stand alone.** The scheduled run starts with no memory of this conversation: it needs the site id or domain, the reader, the tools to call with their arguments, the output shape, and the rule that every number comes from a tool result. Copy the recipe and fill it in; do not summarise it.
-- **Meeting-relative dates.** If a calendar connector is available, find the recurring meeting and compute the day (a Tuesday 10:00 meeting with a two-day lead is Sunday; move to the preceding Friday morning if they prefer a workday). Otherwise ask for the weekday and go from there. Confirm the resolved local day and time before creating anything.
+- **The prompt must stand alone.** The scheduled run starts with no memory of this conversation: it needs the site id or domain, the reader, the tools to call with their arguments and windows, the output shape, and the rule that every number comes from a tool result. Copy the recipe and fill it in; do not summarise it. Name the connector as "the Harvv connector (https://harvv.com/mcp)"; the run cannot see what the person called it.
+- **Which site, which reader.** If the request names no site or client, ask (or, with one site on the account, use it and say so). If the person named the reader in this conversation ("a brief for the client's founder") use that, and offer to save it with `set_working_context` so the next report starts from it.
+- **Private notes stay private.** `about_this_client` and `working_context` shape the framing of a client-facing report and are never quoted or paraphrased in it. Account notices a tool returns (a plan allowance reached, a connector that stopped syncing, a tool limit) go in a short closing section addressed to the account holder, not to the client.
+- **Meeting-relative dates.** If a calendar connector is available, search it for the meeting by the client's name and read its weekday, time and recurrence; compute the run day (a Tuesday 10:00 meeting with a two-day lead is Sunday). Default to 08:00 in the person's timezone and offer the preceding Friday if they want a workday. Otherwise ask for the weekday and go from there. State the resolved local day and time in one sentence before creating anything; if you cannot ask, pick, say what you picked, and make it easy to change.
 - **Where it lands.** The scheduler's own output is the default. If Slack is connected on the Harvv account, the person can also ask Harvv in the channel; if a Slack or email connector is present in this session, the prompt can post or send, but say so and get a yes first.
 - **One schedule per report.** Create it with the scheduler available in this session (claude.ai or desktop scheduled tasks, or a Claude Code routine with the Harvv connector attached). If no scheduler is available, hand over the finished prompt and the exact steps to create the task, so nothing is lost.
 
@@ -74,4 +76,4 @@ End with one short recap the person can forward:
 - Each scheduled report: name, cadence in their local time, what it reads, where it lands.
 - When to run this skill again: after a new site is added, after a platform change (new theme, new checkout), or when a report says a connector is missing.
 
-Honesty throughout: a number comes from a tool result or it is not stated; a step is done when Harvv observed it; a limit a tool reports is relayed, with the `next_steps` the tool returns, not worked around.
+Honesty throughout: a number comes from a tool result or it is not stated; a step is done when Harvv observed it; a limit a tool reports is relayed, with the `next_steps` the tool returns, not worked around. `red_team` returns a checklist, not a verdict: apply each item to the conclusion yourself and drop what fails.
