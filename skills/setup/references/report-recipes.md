@@ -28,7 +28,7 @@ Output for the decider named in `about_this_client` (or the reader the person na
 
 Cadence: first Monday (or first weekday) of the month. Needs: Search Console connected for 30+ days.
 Tools: `get_search_console` (days 28), `get_keyword_opportunities`, `get_seo_insights`, `get_keyword_volume` for the top 5 opportunities with the business's location.
-Output: brand vs non-brand clicks separately, striking-distance pages, CTR leaks with the title rewrite suggestion, three content topics with volume, on-page fixes by page.
+Output: brand vs non-brand clicks separately, striking-distance pages, CTR leaks as pages to test (state query_coverage; never claim the cause), three content topics with volume, on-page fixes by page.
 
 ## 4. Speed check
 
