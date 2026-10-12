@@ -2,7 +2,7 @@
 
 Detect dead clicks, rage clicks, and conversion killers on your website. One pixel, AI-powered fix suggestions, delivered right in your editor.
 
-[Harvv](https://harvv.com) is a behavioral analytics platform that captures 50+ behavioral signals from your site with a lightweight async pixel (~21KB gzipped), detects UX issues automatically, and generates fix suggestions. This plugin brings that data directly into Claude Code so you can install the pixel, view detected issues, and apply AI-generated fixes without leaving your editor.
+[Harvv](https://harvv.com) is a behavioral analytics platform that captures 50+ behavioral signals from your site with one async pixel (live size at [harvv.com/public/facts](https://harvv.com/public/facts)), detects UX issues automatically, and generates fix suggestions. This plugin brings that data directly into Claude Code so you can install the pixel, view detected issues, and apply AI-generated fixes without leaving your editor.
 
 ## Install
 
@@ -108,7 +108,7 @@ The API key is used to authenticate requests to `https://harvv.com/v1/*` endpoin
 
 ## How it works
 
-1. **Install** — `/harvv:install` injects a single `<script>` tag into your project's HTML. The pixel is ~21KB gzipped and loads asynchronously (it never blocks rendering).
+1. **Install** — `/harvv:install` injects a single `<script>` tag into your project's HTML. The pixel loads asynchronously (it never blocks rendering); its current size is published at https://harvv.com/public/facts.
 2. **Capture** — Once deployed, the pixel captures 50+ behavioral signals from real visitors (anonymous, no PII).
 3. **Detect** — Harvv's AI detection engine analyzes the data every hour and flags UX issues with statistical confidence thresholds.
 4. **Query** — `/harvv:issues` pulls the detected issues via API and shows them in your terminal.
