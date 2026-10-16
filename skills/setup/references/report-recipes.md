@@ -22,7 +22,7 @@ Output: the one thing to fix first and why, sessions affected (from the tool, wi
 
 Cadence: N days before a recurring meeting (see scheduling.md). Needs: pixel live; works better with GA4, Search Console or the Shopify checkout pixel.
 Tools: `get_traffic_summary` (days 7, then days 30); for a store BOTH `get_conversions` (days 30, revenue and daily trend live here) and `get_commerce_funnel` (days 7, mid-funnel and stock signals live here); for a lead site `get_conversions` (days 30) and `get_forms` (days 7); `get_issues` (status open, limit 3); `get_search_console` if connected; `get_ad_spend` (days 7) and `get_ad_traffic_quality` (days 30, it needs more than a week to separate a campaign from noise) if ads run.
-Output for the decider named in `about_this_client` (or the reader the person named): three wins with numbers, three things to decide with a recommendation each, one chart-worthy trend in words, and the asks (connections or access the agency is still waiting on). Under 400 words, no selectors or technical terms. Mark the sample size next to every behavioural claim. End with a short section headed "For you, not the client" for anything a tool told the account holder (plan allowance, a sync that stopped, a limit).
+Output for the decider named in `about_this_client` (or the reader the person named): two wins with numbers, two things to decide with a recommendation each, one trend in words, and the asks (connections or access the agency is still waiting on). Under 450 words, no selectors or technical terms. Mark the sample size next to every behavioural claim; if the brief runs long, cut a win or the trend, never a sample size. End with a short section headed "For you, not the client" for anything a tool told the account holder (plan allowance, a sync that stopped, a limit).
 
 ## 3. Monthly search report
 
@@ -58,7 +58,7 @@ Output: which of this week's numbers are inside the site's own range and the fle
 ## 8. Setup watch
 
 Cadence: daily until `all_required_done`, then disable. Needs: nothing.
-Tools: `get_setup_status`, `check_install` on the live URL when the pixel is still `never`.
+Tools: `get_setup_status`, then `check_install` on the live URL while the `pixel` item is not `done` (`pixel.state` is `never` or `quiet`).
 Output: what became live since yesterday, what is still waiting, the one action and who owns it. When everything required is done, say so and tell the person to turn the task off (or do it, if the scheduler tool allows).
 
 ## Matching a request to a recipe
