@@ -43,12 +43,12 @@ Claude will:
 
 ### Stage 2: API key (usually automatic)
 
-If `/harvv:install` created your account, it already saved an API key for you and gave you a one-click activation link to your dashboard — nothing else to do.
+`/harvv:install` does not make a key: Harvv emails you a link that opens your dashboard. Once signed in, make a key:
 
 If you already had a Harvv account, create a key once:
 
-1. Go to [harvv.com/site.html#/app](https://harvv.com/site.html#/app) → Settings → API Keys
-2. Click "Create Key" and copy the `hv_live_xxx` key
+1. In Harvv, open Settings, Integrations, API keys, and pick Read only
+2. Click "Create key" and copy the `hk_live_xxx` key
 3. Set it as `HARVV_API_KEY` in your environment (or tell Claude when prompted)
 
 ## Commands
@@ -78,9 +78,9 @@ This plugin stores one sensitive setting via Claude Code's `userConfig`:
 
 | Setting | Description | Required |
 |---------|-------------|----------|
-| `harvv_api_key` | Your Harvv API key (format: `hv_live_xxx`). Created at [harvv.com](https://harvv.com/site.html#/app) → Settings → API Keys. | Only for `/harvv:issues`, `/harvv:fix`, `/harvv:why` |
+| `harvv_api_key` | Your Harvv API key (format: `hk_live_xxx`, Read only is enough). Made in Harvv under Settings, Integrations, API keys. | Only for `/harvv:issues`, `/harvv:fix`, `/harvv:why` |
 
-The API key is used to authenticate requests to `https://harvv.com/v1/*` endpoints. See the [API docs](https://harvv.com/docs/api) for details.
+The API key authenticates calls to `https://harvv.com/v1/tools/<tool>`, the same tools and answers as the Harvv MCP connector, metered with the same Credits. See the [API docs](https://harvv.com/docs/api) for details.
 
 ## Privacy & Security
 
@@ -94,7 +94,7 @@ The API key is used to authenticate requests to `https://harvv.com/v1/*` endpoin
 **The API key:**
 - Stored via Claude Code's secure `userConfig` system (never logged)
 - Scoped to read-only access for your sites only
-- Revocable at any time from [harvv.com](https://harvv.com/site.html#/app) → Settings → API Keys
+- Revocable at any time in Harvv under Settings, Integrations, API keys
 
 **What this plugin sends to Harvv's API:**
 - Your email (during `/harvv:install` only, to create the account)
@@ -124,7 +124,7 @@ The API key is used to authenticate requests to `https://harvv.com/v1/*` endpoin
 ✔ Enter your email: you@example.com
 ✔ Account created. Pixel key: abc123def456
 ✔ Injected into app/layout.tsx
-📊 Dashboard: https://harvv.com/site.html#/app
+📊 Dashboard: https://harvv.com/newdashboardui
 
 # After some traffic, check what's broken
 > /harvv:issues
@@ -133,7 +133,7 @@ Site: example.com — 3 issues detected
 #142 [open] Product title links are not clickable
   847 visitors affected (12% of total)
   Fix: Wrap the <h3> in an <a> tag...
-  View: https://harvv.com/site.html#/app/site/xxx/issue/142
+  View: https://harvv.com/newdashboardui#/site/xxx/issue/142
 
 #143 [open] Pricing card body triggers no action
   412 visitors affected
@@ -149,7 +149,7 @@ Deploy your changes and Harvv will verify the fix.
 
 ## Links
 
-- **Dashboard:** https://harvv.com/site.html#/app
+- **Dashboard:** https://harvv.com/newdashboardui
 - **API Docs:** https://harvv.com/docs/api
 - **Privacy:** https://harvv.com/privacy
 - **Security:** https://harvv.com/trust

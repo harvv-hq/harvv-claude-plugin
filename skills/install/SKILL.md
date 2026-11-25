@@ -28,13 +28,10 @@ Install the Harvv behavioral analytics pixel into this project. The pixel loads 
        -H "Content-Type: application/json" \
        -d '{"email":"THEIR_EMAIL","domain":"THEIR_DOMAIN","project_type":"DETECTED_TYPE","source":"claude_plugin"}'
      ```
-   - **New account** (response contains `api_key` + `activation_link`):
-     1. Use `pixel_key` from the response for the install below.
-     2. Save the `api_key` for them: suggest adding `HARVV_API_KEY=<key>` to their shell profile or .env (never echo it back fully after saving — show `hv_live_xxxx...` only). This powers /harvv:issues, /harvv:fix, and /harvv:why with zero portal visits.
-     3. After installing the pixel, tell them, in this spirit:
-        "Your Harvv account is ready. **Click this link to activate it and see your dashboard:** <activation_link> — it signs you in automatically (works once, expires in 7 days). No password needed: any time you're signed out, use 'Email me a sign-in link' on the login page. If you'd rather have a password, your welcome email has a one-click setup link."
-     4. NEVER ask the user to type a password in this chat, and never offer to set one for them — passwords are set in the browser via the emailed link only.
-   - **Existing account** (response has `pixel_key` but no `api_key`): use the returned pixel_key; for the API key, point them to harvv.com → Settings → API Keys (we never auto-mint keys for existing accounts).
+   - The answer (201) carries `pixel_key` for the install below and a `message`: Harvv has emailed them a link that opens their dashboard and confirms the site is theirs. Relay that; there is no API key and no sign-in link in the answer (since 2026-11-13 a key is made only after sign-in).
+   - A 202 with `code: "check_inbox"` means the domain is already tracked or the mail is held: ask them to check their email, or for their existing pixel key.
+   - For /harvv:issues, /harvv:fix and /harvv:why they make an API key once they are signed in: Settings, Integrations, API keys, Read only, Create key. Suggest saving it as `HARVV_API_KEY` (never echo it back fully: show `hk_live_xxxx...` only).
+   - NEVER ask the user to type a password in this chat, and never offer to set one for them.
    - If they hit the rate limit (429), wait a few minutes or ask for their existing pixel key.
 
 3. **Install based on project type**:
@@ -86,7 +83,7 @@ Add to `index.html` before `</head>`:
 
 4. **Verify**: After installing, tell the user:
    - "Pixel installed! Visit your site to generate the first session."
-   - "View your dashboard at https://harvv.com/site.html#/app"
+   - "View your dashboard at https://harvv.com/newdashboardui"
    - "Issues are detected automatically after 50+ sessions."
 
 5. **Subdomains**: Ask the user if their site has any subdomains:
@@ -94,7 +91,7 @@ Add to `index.html` before `</head>`:
    - **If yes**, explain:
      - If the subdomains share the same codebase (monorepo, same theme, etc.), the pixel you just installed will cover them automatically via first-party cookies on the root domain
      - If they're separate codebases/deployments, you'll need to install the pixel on each one — I can help with that, just open the other project in Claude and run `/harvv:install` again
-     - After a few hours of traffic, Harvv will auto-detect any live subdomains without the pixel and show them in the dashboard with checkbox install prompts — go to harvv.com/site.html#/app → Overview → scroll to "Install on more subdomains"
+     - After a few hours of traffic, Harvv will auto-detect any live subdomains without the pixel and show them in the dashboard with checkbox install prompts — go to harvv.com/newdashboardui → Overview → scroll to "Install on more subdomains"
    - **If no**, say: "Great — you're all set. The pixel is first-party and handles everything automatically."
 
 ## What the pixel captures (50+ signals)
