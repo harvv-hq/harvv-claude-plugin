@@ -1,6 +1,6 @@
 {
   "name": "harvv",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Harvv UX Analytics \u2014 detect dead clicks, rage clicks, and conversion killers. One pixel, AI-powered fix suggestions.",
   "author": {
     "name": "Harvv",
@@ -22,7 +22,7 @@
     "harvv_api_key": {
       "type": "string",
       "title": "Harvv API Key",
-      "description": "Your Harvv API key (hv_live_...). Created automatically by /harvv:install for new accounts, or at harvv.com -> Settings -> API Keys. Only needed for /harvv:issues, /harvv:fix, /harvv:why.",
+      "description": "Your Harvv API key (hk_live_..., Read only is enough). Make one in Harvv under Settings, Integrations, API keys. Only needed for /harvv:issues, /harvv:fix, /harvv:why.",
       "sensitive": true
     }
   }
